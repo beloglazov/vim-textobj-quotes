@@ -1,0 +1,45 @@
+*vim-textobj-quotes.txt*	Text objects for closests pairs of quotes
+
+Author:  Anton Beloglazov http://beloglazov.info/
+License: Same terms as Vim itself (see |license|)
+
+This plugin is only available if 'compatible' is not set.
+
+INTRODUCTION                                                *textobj-quotes*
+
+`vim-textobj-quotes` is a Vim plugin providing text objects for the closest
+pairs of quotes of any type. Using only |iq| or |aq| it allows you to operate on
+content of single quotes, double quotes, or back ticks that currently surround
+the cursor, are in front of the cursor, or behind (in that order of preference).
+In other words, it jumps forward or backwards when needed to reach the quotes.
+
+It's easier to understand by looking at examples (the cursor is shown with `|`):
+
+1. Before: foo '1, |2, 3' bar; after pressing |diq|: foo '|' bar
+2. Before: foo| '1, 2, 3' bar; after pressing |diq|: foo '|' bar
+3. Before: foo '1, 2, 3' |bar; after pressing |diq|: foo '|' bar
+4. Before: foo '1, |2, 3' bar; after pressing |daq|: foo | bar
+5. Before: foo| '1, 2, 3' bar; after pressing |daq|: foo | bar
+6. Before: foo '1, 2, 3' |bar; after pressing |daq|: foo | bar
+
+The examples above are given for single quotes, the plugin works exactly the
+same way for double quotes and back ticks (`).
+
+The plugin uses |vim-textobj-user| developed by Kana Natsuno and requires it to
+be installed: https://github.com/kana/vim-textobj-user
+
+MAPPINGS                                           *textobj-quotes-mappings*
+
+By default the pluging provides |iq| and |aq| mappings to operate on the
+content surrounded by single quotes, double quotes, or back ticks.
+
+As most of the time, you need to operate on a text inside quotes, I add the
+following binding to make it even more convenient to use:
+>
+  onoremap q iq
+>
+Now, you just need to press |cq|, |dq|, |yq|, or |vq| to operate on the text
+in single quotes, double quotes, or back ticks nearby without manually moving
+into them.
+
+ vim:tw=80:ts=4:ft=help:norl:
