@@ -52,6 +52,5 @@ Enjoy! :)
 
 ## License
 
-The source code is released under the Apache 2.0 license.
-
-Copyright (C) 2014 Anton Beloglazov
+Copyright (c) Anton Beloglazov. Distributed under the same terms as Vim itself.
+See :help license.
