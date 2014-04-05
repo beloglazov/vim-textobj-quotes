@@ -2,25 +2,189 @@ filetype plugin on
 runtime! plugin/textobj/quotes.vim
 
 
-describe 'iq'
-    it 'selects when inside single quotes'
-        put! = "foo '1, 2, 3' bar"
+describe 'iq (single quotes)'
+
+    before
+        new
+        put! = 'foo ''1, 2, 3'' bar'
+    end
+
+    after
+        close!
+    end
+
+    it 'deletes when inside'
         normal! 9|
         normal diq
         Expect getline(1) == "foo '' bar"
     end
 
-    it 'selects when in front of single quotes'
-        put! = "foo '1, 2, 3' bar"
+    it 'deletes when in front'
         normal! 2|
         normal diq
         Expect getline(1) == "foo '' bar"
     end
 
-    it 'selects when behind single quotes'
-        put! = "foo '1, 2, 3' bar"
+    it 'deletes when behind'
         normal! 14|
         normal diq
         Expect getline(1) == "foo '' bar"
     end
+
 end
+
+describe 'iq (double quotes)'
+
+    before
+        new
+        put! = 'foo \"1, 2, 3\" bar'
+    end
+
+    after
+        close!
+    end
+
+    it 'deletes when inside'
+        normal! 9|
+        normal diq
+        Expect getline(1) == 'foo "" bar'
+    end
+
+    it 'deletes when in front'
+        normal! 2|
+        normal diq
+        Expect getline(1) == 'foo "" bar'
+    end
+
+    it 'deletes when behind'
+        normal! 14|
+        normal diq
+        Expect getline(1) == 'foo "" bar'
+    end
+
+end
+
+describe 'iq (back ticks)'
+
+    before
+        new
+        put! = 'foo `1, 2, 3` bar'
+    end
+
+    after
+        close!
+    end
+
+    it 'deletes when inside'
+        normal! 9|
+        normal diq
+        Expect getline(1) == 'foo `` bar'
+    end
+
+    it 'deletes when in front'
+        normal! 2|
+        normal diq
+        Expect getline(1) == 'foo `` bar'
+    end
+
+    it 'deletes when behind'
+        normal! 14|
+        normal diq
+        Expect getline(1) == 'foo `` bar'
+    end
+
+end
+
+describe 'aq (single quotes)'
+
+    before
+        new
+        put! = 'foo ''1, 2, 3'' bar'
+    end
+
+    after
+        close!
+    end
+
+    it 'deletes when inside'
+        normal! 9|
+        normal daq
+        Expect getline(1) == "foo  bar"
+    end
+
+    it 'deletes when in front'
+        normal! 2|
+        normal daq
+        Expect getline(1) == "foo  bar"
+    end
+
+    it 'deletes when behind'
+        normal! 14|
+        normal daq
+        Expect getline(1) == "foo  bar"
+    end
+
+end
+
+describe 'aq (double quotes)'
+
+    before
+        new
+        put! = 'foo \"1, 2, 3\" bar'
+    end
+
+    after
+        close!
+    end
+
+    it 'deletes when inside'
+        normal! 9|
+        normal daq
+        Expect getline(1) == 'foo  bar'
+    end
+
+    it 'deletes when in front'
+        normal! 2|
+        normal daq
+        Expect getline(1) == 'foo  bar'
+    end
+
+    it 'deletes when behind'
+        normal! 14|
+        normal daq
+        Expect getline(1) == 'foo  bar'
+    end
+
+end
+
+describe 'aq (back ticks)'
+
+    before
+        new
+        put! = 'foo `1, 2, 3` bar'
+    end
+
+    after
+        close!
+    end
+
+    it 'deletes when inside'
+        normal! 9|
+        normal daq
+        Expect getline(1) == 'foo  bar'
+    end
+
+    it 'deletes when in front'
+        normal! 2|
+        normal daq
+        Expect getline(1) == 'foo  bar'
+    end
+
+    it 'deletes when behind'
+        normal! 14|
+        normal daq
+        Expect getline(1) == 'foo  bar'
+    end
+
+end
+
