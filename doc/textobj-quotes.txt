@@ -37,7 +37,8 @@ content surrounded by single ('), double ("), or back (`) quotes.
 As most of the time, you need to operate on a text inside quotes, I add the
 following binding to make it even more convenient to use:
 >
-  onoremap q iq
+  xmap q iq
+  omap q iq
 >
 Now, you just need to press |cq|, |dq|, |yq|, or |vq| to operate on the text
 in single ('), double ("), or back (`) quotes nearby without manually moving
