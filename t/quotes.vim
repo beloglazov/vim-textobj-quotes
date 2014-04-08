@@ -64,7 +64,7 @@ describe 'iq (double quotes)'
 
 end
 
-describe 'iq (back ticks)'
+describe 'iq (back quotes)'
 
     before
         new
@@ -157,7 +157,7 @@ describe 'aq (double quotes)'
 
 end
 
-describe 'aq (back ticks)'
+describe 'aq (back quotes)'
 
     before
         new
