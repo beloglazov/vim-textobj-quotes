@@ -26,6 +26,9 @@ It's easier to understand by looking at examples (the cursor is shown with `|`):
 The examples above are given for single quotes, the plugin works exactly the
 same way for double (") and back (`) quotes.
 
+At the moment, the plugin only supports single-line operation and does nothing
+if there are no balanced quotes on the cursor's line.
+
 The plugin uses |vim-textobj-user| developed by Kana Natsuno and requires it to
 be installed: https://github.com/kana/vim-textobj-user
 
