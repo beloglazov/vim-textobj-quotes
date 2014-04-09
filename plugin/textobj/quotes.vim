@@ -2,6 +2,7 @@
 " Author: Anton Beloglazov
 " Version: 0.1.0
 
+
 if exists('g:loaded_textobj_quotes')
     finish
 endif
@@ -14,8 +15,19 @@ call textobj#user#plugin('quote', {
     \     'select-i': 'iq',  '*select-i-function*': 's:select_i',
     \ }})
 
+function! s:quote_regex(quote)
+    return '\v([^\\]|^)\zs' . a:quote
+endfunction
+
+function! s:count_quotes(quote, content)
+    let s:content = substitute(
+        \ a:content, '\v\\' . a:quote, '', 'g')
+    return strlen(substitute(
+        \ s:content, '[^' . a:quote . ']', '', 'g'))
+endfunction
+
 function! s:select(object_type)
-    let s:regex = '''\|"\|`'
+    let s:regex = s:quote_regex('(''|\"|`)')
     let s:pos = getpos('.')
     let s:line = line('.')
     let s:content = getline('.')
@@ -27,14 +39,14 @@ function! s:select(object_type)
         let s:col = col('.')
         let s:content_head = s:content[: s:col - 1]
         let s:content_tail = s:content[s:col :]
-        let s:head_cnt = strlen(substitute(s:content_head, '[^' . s:q . ']', '', 'g'))
-        let s:tail_cnt = strlen(substitute(s:content_tail, '[^' . s:q . ']', '', 'g'))
+        let s:head_cnt = s:count_quotes(s:q, s:content_head)
+        let s:tail_cnt = s:count_quotes(s:q, s:content_tail)
         if s:head_cnt % 2 == 1 || s:tail_cnt == 0
             if s:tail_cnt == 0
-                call search(s:q, 'be')
+                call search(s:quote_regex(s:q), 'be')
                 let s:start_position = getpos('.')
             endif
-            call search(s:q, 'e')
+            call search(s:quote_regex(s:q), 'e')
             let s:end_position = getpos('.')
             let s:found = 1
         endif
@@ -46,7 +58,7 @@ function! s:select(object_type)
         if s:start_found > 0
             let s:start_position = getpos('.')
             let s:q = getline('.')[col('.') - 1]
-            call search(s:q, 'e')
+            call search(s:quote_regex(s:q), 'e')
             let s:end_position = getpos('.')
             let s:found = 1
         endif
