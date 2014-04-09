@@ -35,7 +35,7 @@ function! s:select(object_type)
     let s:start_found = search(s:regex, 'be', s:line)
     if s:start_found > 0
         let s:start_position = getpos('.')
-        let s:q = getline('.')[col('.') - 1]
+        let s:q = s:content[col('.') - 1]
         let s:col = col('.')
         let s:content_head = s:content[: s:col - 1]
         let s:content_tail = s:content[s:col :]
@@ -43,10 +43,10 @@ function! s:select(object_type)
         let s:tail_cnt = s:count_quotes(s:q, s:content_tail)
         if s:head_cnt % 2 == 1 || s:tail_cnt == 0
             if s:tail_cnt == 0
-                call search(s:quote_regex(s:q), 'be')
+                call search(s:quote_regex(s:q), 'be', s:line)
                 let s:start_position = getpos('.')
             endif
-            call search(s:quote_regex(s:q), 'e')
+            call search(s:quote_regex(s:q), 'e', s:line)
             let s:end_position = getpos('.')
             let s:found = 1
         endif
@@ -57,14 +57,14 @@ function! s:select(object_type)
         let s:start_found = search(s:regex, 'ce', s:line)
         if s:start_found > 0
             let s:start_position = getpos('.')
-            let s:q = getline('.')[col('.') - 1]
-            call search(s:quote_regex(s:q), 'e')
+            let s:q = s:content[col('.') - 1]
+            call search(s:quote_regex(s:q), 'e', s:line)
             let s:end_position = getpos('.')
             let s:found = 1
         endif
     endif
 
-    if s:found == 0
+    if s:found == 0 || s:start_position == s:end_position
         return 0
     endif
 
