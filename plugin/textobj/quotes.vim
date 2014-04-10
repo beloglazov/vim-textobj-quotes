@@ -105,11 +105,11 @@ endfunction
 
 function! s:select(object_type)
     let head = s:get_quotes(s:get_buffer_head())
-    let tail = s:get_quotes(s:get_buffer_tail())
     let opened = s:parse_quotes(head)
 
     " the inside case
     if len(opened) > 0
+        let tail = s:get_quotes(s:get_buffer_tail())
         let first_closing = s:get_first_closing_quote(tail, opened)
         let regex = s:quote_regex(first_closing)
         call search(regex, 'Wbe')
