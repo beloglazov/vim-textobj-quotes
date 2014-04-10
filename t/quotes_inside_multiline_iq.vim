@@ -16,7 +16,7 @@ describe 'inside multiline'
         \   '1\"2',
         \   '3\"4',
         \ ]
-        normal! l
+        normal! f1
         normal diq
         Expect getline(1) == '1""4'
         Expect getline(2) == ''
@@ -27,7 +27,18 @@ describe 'inside multiline'
         \   '1\"2',
         \   '3\"4',
         \ ]
-        normal! ll
+        normal! f"
+        normal diq
+        Expect getline(1) == '1""4'
+        Expect getline(2) == ''
+    end
+
+    it 'simple'
+        0 put =[
+        \   '1\"2',
+        \   '3\"4',
+        \ ]
+        normal! f2
         normal diq
         Expect getline(1) == '1""4'
         Expect getline(2) == ''
@@ -49,7 +60,7 @@ describe 'inside multiline'
         \   '1\"2',
         \   '3\"4',
         \ ]
-        normal! jl
+        normal! jf"
         normal diq
         Expect getline(1) == '1""4'
         Expect getline(2) == ''
@@ -60,7 +71,7 @@ describe 'inside multiline'
         \   '1\"2',
         \   '3\"4',
         \ ]
-        normal! jll
+        normal! jf4
         normal diq
         Expect getline(1) == '1""4'
         Expect getline(2) == ''
