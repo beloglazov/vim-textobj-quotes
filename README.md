@@ -18,9 +18,9 @@ It's easier to understand by looking at examples (the cursor is shown with `|`):
 The examples above are given for single quotes, the plugin works exactly the
 same way for double (") and back (`) quotes.
 
-At the moment, the plugin only supports single-line operation and does nothing
-if there are no balanced quotes on the cursor's line (see
-[#2](https://github.com/beloglazov/vim-textobj-quotes/issues/2)).
+At the moment, the plugin has experimental support for multiline and nested
+quote structures, please report any bugs in the [issue
+tracker](https://github.com/beloglazov/vim-textobj-quotes/issues).
 
 
 ## Installation
