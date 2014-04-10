@@ -16,7 +16,11 @@ call textobj#user#plugin('quote', {
     \ }})
 
 function! s:quote_regex(quote)
-    return '\v(\\)@<!' . a:quote
+    if &filetype ==# 'vim'
+        return '\v(\\|^\s*' . a:quote . '*)@<!' . a:quote
+    else
+        return '\v(\\)@<!' . a:quote
+    endif
 endfunction
 
 function! s:get_quotes(str)
@@ -38,6 +42,14 @@ function! s:get_buffer_head()
     endif
     let lines = getline(0, s:line)
     let lines[-1] = lines[-1][: s:col]
+    if &filetype ==# 'vim'
+        let n = len(lines)
+        let i = 0
+        while i < n
+            let lines[i] = substitute(lines[i], '\v^\s*"+', '', 'g')
+            let i += 1
+        endwhile
+    endif
     return join(lines, '')
 endfunction
 
