@@ -98,7 +98,12 @@ function! s:format_output(object_type, start_pos, end_pos)
     let end_pos = a:end_pos
     if a:object_type ==? 'i'
         let start_pos[2] += 1
-        let end_pos[2] -= 1
+        if end_pos[2] == 1
+            let end_pos[1] -= 1
+            let end_pos[2] = strlen(getline(end_pos[1])) + 1
+        else
+            let end_pos[2] -= 1
+        endif
     endif
     return ['v', start_pos, end_pos]
 endfunction

@@ -77,5 +77,55 @@ describe 'inside multiline'
         Expect getline(2) == ''
     end
 
+    it 'three lines, closing at the beginning of a line'
+        0 put =[
+        \   'hello = \"',
+        \   'world',
+        \   '\"',
+        \ ]
+        normal diq
+        Expect getline(1) == 'hello = ""'
+        Expect getline(2) == ''
+        Expect getline(3) == ''
+    end
+
+    it 'three lines, closing at the beginning of a line'
+        0 put =[
+        \   'hello = \"',
+        \   'world',
+        \   '\"',
+        \ ]
+        normal! j
+        normal diq
+        Expect getline(1) == 'hello = ""'
+        Expect getline(2) == ''
+        Expect getline(3) == ''
+    end
+
+    it 'three lines, closing not at the beginning of a line'
+        0 put =[
+        \   'hello = \"',
+        \   'world',
+        \   '!\"',
+        \ ]
+        normal diq
+        Expect getline(1) == 'hello = ""'
+        Expect getline(2) == ''
+        Expect getline(3) == ''
+    end
+
+    it 'three lines, closing not at the beginning of a line'
+        0 put =[
+        \   'hello = \"',
+        \   'world',
+        \   '!\"',
+        \ ]
+        normal! j
+        normal diq
+        Expect getline(1) == 'hello = ""'
+        Expect getline(2) == ''
+        Expect getline(3) == ''
+    end
+
 end
 
