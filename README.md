@@ -27,7 +27,7 @@ tracker](https://github.com/beloglazov/vim-textobj-quotes/issues).
 
 This plugin requires
 [vim-textobj-user](https://github.com/kana/vim-textobj-user) to be installed. If
-you are using Vundle, just add the following lines to your .vimrc:
+you are using Vundle, just add the following lines to your `.vimrc`:
 
 ```
 Bundle 'kana/vim-textobj-user'
