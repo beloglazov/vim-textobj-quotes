@@ -16,12 +16,12 @@ reach the quotes.
 
 It's easier to understand by looking at examples (the cursor is shown with `|`):
 
-1. Before: foo '1, |2, 3' bar; after pressing |diq|: foo '|' bar
-2. Before: foo| '1, 2, 3' bar; after pressing |diq|: foo '|' bar
-3. Before: foo '1, 2, 3' |bar; after pressing |diq|: foo '|' bar
-4. Before: foo '1, |2, 3' bar; after pressing |daq|: foo | bar
-5. Before: foo| '1, 2, 3' bar; after pressing |daq|: foo | bar
-6. Before: foo '1, 2, 3' |bar; after pressing |daq|: foo | bar
+1. Before: foo '1, `|`2, 3' bar; after pressing |diq|: foo '`|`' bar
+2. Before: foo`|` '1, 2, 3' bar; after pressing |diq|: foo '`|`' bar
+3. Before: foo '1, 2, 3' `|`bar; after pressing |diq|: foo '`|`' bar
+4. Before: foo '1, `|`2, 3' bar; after pressing |daq|: foo `|` bar
+5. Before: foo`|` '1, 2, 3' bar; after pressing |daq|: foo `|` bar
+6. Before: foo '1, 2, 3' `|`bar; after pressing |daq|: foo `|` bar
 
 The examples above are given for single quotes, the plugin works exactly the
 same way for double (") and back (`) quotes.
