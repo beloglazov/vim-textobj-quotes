@@ -1,4 +1,4 @@
-*textobj-quotes.txt*	Text objects for closests pairs of quotes
+*textobj-quotes.txt*	Text objects for closest pairs of quotes
 
 Author:  Anton Beloglazov http://beloglazov.info/
 License: Same terms as Vim itself (see |license|)
@@ -35,7 +35,7 @@ be installed: https://github.com/kana/vim-textobj-user
 
 MAPPINGS                                           *textobj-quotes-mappings*
 
-By default the pluging provides |iq| and |aq| mappings to operate on the
+By default the plugin provides |iq| and |aq| mappings to operate on the
 content surrounded by single ('), double ("), or back (`) quotes.
 
 As most of the time, you need to operate on a text inside quotes, I add the
